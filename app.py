@@ -161,7 +161,7 @@ def show_venue(venue_id):
     "city": venue.city,
     "state": venue.state,
     "phone": venue.phone,
-    "website_link": venue.website_link,
+    "website": venue.website,
     "facebook_link": venue.facebook_link,
     "seeking_talent": venue.seeking_talent,
     "seeking_description": venue.seeking_description,
@@ -276,10 +276,10 @@ def create_venue_submission():
       image_link = form.image_link.data
       genres = form.genres.data
       facebook_link = form.facebook_link.data
-      website_link = form.website_link.data
+      website = form.website.data
       seeking_talent = form.seeking_talent.data
       seeking_description = form.seeking_description.data
-      venue = Venue(name=name, city=city, state=state, address=address, phone=phone, image_link=image_link, genres=genres, facebook_link=facebook_link, website_link=website_link, seeking_talent=seeking_talent, seeking_description=seeking_description)
+      venue = Venue(name=name, city=city, state=state, address=address, phone=phone, image_link=image_link, genres=genres, facebook_link=facebook_link, website=website, seeking_talent=seeking_talent, seeking_description=seeking_description)
       db.session.add(venue)
       db.session.commit()
   except:
@@ -329,7 +329,7 @@ def edit_venue(venue_id):
   form.state.data = venue.state
   form.phone.data = venue.phone
   form.facebook_link.data = venue.facebook_link
-  form.website_link.data = venue.website
+  form.website.data = venue.website
   form.image_link.data = venue.image_link
   form.seeking_talent.data = venue.seeking_talent
   form.seeking_description.data = venue.seeking_description
@@ -364,7 +364,7 @@ def edit_venue_submission(venue_id):
     venue.image_link = form.image_link.data
     venue.genres = form.genres.data
     venue.facebook_link = form.facebook_link.data
-    venue.website_link = form.website_link.data
+    venue.website = form.website.data
     venue.seeking_talent = form.seeking_talent.data
     venue.seeking_description = form.seeking_description.data
     db.session.add(venue)
@@ -454,7 +454,7 @@ def show_artist(artist_id):
     "city": artist.city,
     "state": artist.state,
     "phone": artist.phone,
-    "website_link": artist.website_link,
+    "website": artist.website,
     "facebook_link": artist.facebook_link,
     "seeking_venue": artist.seeking_venue,
     "seeking_description": artist.seeking_description,
@@ -552,7 +552,7 @@ def edit_artist(artist_id):
   form.state.data = artist.state
   form.phone.data = artist.phone
   form.facebook_link.data = artist.facebook_link
-  form.website_link.data = artist.website
+  form.website.data = artist.website
   form.image_link.data = artist.image_link
   form.seeking_venue.data = artist.seeking_venue
   form.seeking_description.data = artist.seeking_description
@@ -585,7 +585,7 @@ def edit_artist_submission(artist_id):
     artist.image_link = form.image_link.data
     artist.genres = form.genres.data
     artist.facebook_link = form.facebook_link.data
-    artist.website_link = form.website_link.data
+    artist.website = form.website.data
     artist.seeking_venue = form.seeking_venue.data
     artist.seeking_description = form.seeking_description.data
     db.session.add(artist)
@@ -629,10 +629,10 @@ def create_artist_submission():
     image_link = form.image_link.data
     genres = form.genres.data
     facebook_link = form.facebook_link.data
-    website_link = form.website_link.data
+    website = form.website.data
     seeking_venue = form.seeking_venue.data
     seeking_description = form.seeking_description.data
-    artist = Artist(name=name, city=city, state=state, phone=phone, image_link=image_link, genres=genres, facebook_link=facebook_link, website_link=website_link, seeking_venue=seeking_venue, seeking_description=seeking_description) 
+    artist = Artist(name=name, city=city, state=state, phone=phone, image_link=image_link, genres=genres, facebook_link=facebook_link, website=website, seeking_venue=seeking_venue, seeking_description=seeking_description) 
     db.session.add(artist)
     db.session.commit()
   except:
