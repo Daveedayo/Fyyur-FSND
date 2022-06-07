@@ -1,14 +1,22 @@
-
-from flask import Flask
-from flask_moment import Moment
+from flask_migrate import Migrate
+#from flask import Flask
+#sfrom flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
-moment = Moment(app)
-app.config.from_object('config')
-db = SQLAlchemy(app)
+from sqlalchemy import ARRAY
+
+#app = Flask(__name__)
+#moment = Moment(app)
+#app.config.from_object('config')
+#db = SQLAlchemy(app)
+
+db = SQLAlchemy()
+def ab_db(app):
+  db.app = app
+  db.init_app(app)
+  Migrate(app,db)
 
 class Venue(db.Model):
-    __tablename__ = 'venues'
+    __tablename__ = 'Venue'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
@@ -18,7 +26,7 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120), nullable=False)
-    website = db.Column(db.String(120))
+    website_link = db.Column(db.String(120))
     genres = db.Column(db.String, nullable=False)
     seeking_talent = db.Column(db.Boolean, default=False)
     seeking_description = db.Column(db.String())
@@ -30,7 +38,7 @@ class Venue(db.Model):
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
 class Artist(db.Model):
-    __tablename__ = 'artists'
+    __tablename__ = 'Artist'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
@@ -40,7 +48,7 @@ class Artist(db.Model):
     genres = db.Column(db.String(120), nullable=False)
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120), nullable=False)
-    websites = db.Column(db.String(120))
+    website_link = db.Column(db.String(120))
     genres = db.Column(db.String, nullable=False)
     seeking_venue = db.Column(db.Boolean, default=False)
     seeking_description = db.Column(db.String)

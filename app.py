@@ -17,6 +17,8 @@ from forms import *
 from flask_migrate import Migrate
 import sys
 from models import *
+#from models import Venue, shows, Artist
+from models import db, ab_db
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -24,12 +26,12 @@ from models import *
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
-db = SQLAlchemy(app)
+ab_db(app)
 
 migrate = Migrate(app, db)
 
 # TODO: connect to a local postgresql database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Daveed9258@localhost:5432/fyyurdb2'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Daveed9258@localhost:5432/fyyurdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #----------------------------------------------------------------------------#
 # Models.
